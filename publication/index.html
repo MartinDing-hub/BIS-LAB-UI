@@ -1,0 +1,366 @@
+<!DOCTYPE html>
+<html lang="en-us">
+<head>
+  <meta charset="utf-8">
+  <!-- 设置网页默认显示属性，此处设置为自适应设备宽度，且将缩放比默认设置为100% -->
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <!-- 设置网页的渲染属性，默认使用IE浏览器的最新渲染配置 -->
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <!-- 本网页的作者：丁彦牧 | Yanmu Ding -->
+  <meta name="author" content="Yanmu Ding">
+  <meta name="description" content="The author of the Webpage.">
+  <!-- 本项目的负责人：余帝 | Di Yu -->
+  <meta name="leader" content="Di Yu">
+  <meta name="description" content="The leader of the Project.">
+  <!-- 定义网页的主题色调 -->
+  <meta name="theme-color" content="#003F88">
+  
+  <!-- 以下是所需的CSS渲染工具 -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+  <link rel="stylesheet" type="text/css" href="../css/index.css">
+
+  <!-- 将网页浏览器的标签图标设置为浙大校徽 -->
+  <link rel="icon" type="image/png" href="../img/zju_logo.png">
+  <!-- 设置网页浏览器的标签文本内容 -->
+  <title>Publication | Brain-Inspired System Lab</title>
+</head>
+
+<body>
+  <!-- 设置网页最顶上的引导栏 -->
+  <nav class="navbar navbar-expand-lg" id="navbar-main">
+    <div class="container-fluid">
+      <!-- 在引导栏的左侧显示团队名称和Logo，并将其设置为按钮，点击后回到主页 -->
+      <a class="navbar-brand ms-5 d-flex align-items-center" href="../index.html">
+        <img src="../img/logo.png" alt="Logo" width="60" height="60" class="d-inline-block align-text-top d-none d-sm-block">
+        <span class="ms-3" id="navbar-name"><b>Brain-Inspired System Lab</b></span>
+      </a>
+      
+      <!-- 手机窄屏所显示的主菜单按钮 -->
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+        <i class="fas fa-bars"></i>
+      </button>
+
+      <!-- 在引导栏的右侧显示其他模块按钮 -->
+      <div class="collapse navbar-collapse" id="navbarNav">
+        <ul class="navbar-nav ms-auto">
+          <!-- Home选项，用于回到主页 -->
+          <li class="nav-item">
+            <a class="nav-link ms-3 me-3" href="../index.html" data-target="./">Home</a>
+          </li>
+          <!-- People选项，用于跳转至People页面 -->
+          <li class="nav-item">
+            <a class="nav-link ms-3 me-3" href="../people/index.html">People</a>
+          </li>
+          <!-- Publication选项，用于跳转至Publication页面 -->
+          <li class="nav-item">
+            <a class="nav-link active ms-3 me-3" href="./index.html">Publications</a>
+          </li>
+          <!-- Project选项，用于跳转至Project页面 -->
+          <li class="nav-item">
+            <a class="nav-link ms-3 me-3" href="../project/index.html">Projects</a>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </nav>
+
+  <!-- 学术发表的筛选模块 -->
+  <section class="home-section">
+    <div class="container">
+      <!-- 网页内容一级标题：Publications -->
+      <h1 class="text-center mt-4 mb-4">Publications</h1>
+
+      <!-- 筛选框 -->
+      <div class="row">
+        <!-- 搜索输入框 -->
+        <div class="col-4">
+          <div class="input-group">
+            <span class="input-group-text" id="inputGroup-sizing-default">Search</span>
+            <input type="text" class="form-control filter-search" placeholder="" autocapitalize="off" 
+                   aria-label="Example text with button addon" aria-describedby="button-addon1" autocomplete="off" 
+                   autocorrect="off" role="textbox" spellcheck="false" id="input-filter-id" onkeyup="inputFilter()">
+          </div>
+        </div>
+
+        <!-- 类型选择框 -->
+        <div class="col-4">
+          <div class="input-group">
+            <span class="input-group-text" id="inputGroup-sizing-default">Type</span>
+            <select class="pub-filters form-control form-select form-control-sm" aria-label="Example select with button addon" 
+                    data-filter-group="pubtype" id="select-type-id" onchange="typeFilter()">
+              <option value="pubtype-all">ALL</option>
+              <option value="pubtype-1">
+                Conference Paper
+              </option>
+              <option value="pubtype-2">
+                Journal Article
+              </option>
+            </select>
+          </div>
+        </div>
+
+        <!-- 年份选择框 -->
+        <div class="col-4">
+          <div class="input-group">
+            <span class="input-group-text" id="inputGroup-sizing-default" >Year</span>
+            <select class="pub-filters form-control form-select form-control-sm" aria-label="Example select with button addon" 
+                    data-filter-group="year" id="select-year-id" onchange="yearFilter()">
+              <option value="year-all">ALL</option>
+              <option value="year-2025">
+                2025
+              </option>
+              <option value="year-2024">
+                2024
+              </option>
+            </select>
+          </div>
+        </div>
+        <br>
+        <br>
+        <br>
+        <br>
+      </div>
+
+      <!-- 下述代码是进行学术发表列举的 -->
+      <div id="container-publications">
+        <!-- 学术发表1 -->
+        <div class="grid-sizer col-lg-12 isotope-item pubtype-all pubtype-2 year-all year-2025">
+          <div class="pub-list-item">
+            <i class="far fa-file-alt pub-icon" aria-hidden="true"></i>
+            <!-- 学术发表1：作者列表 -->
+            <span class="article-metadata li-cite-author">
+              <span class="publication-content"><a>Shuiguang Deng, Di Yu, Changze Lv, Xin Du, Linshan Jiang, Xiaofan Zhao, Wentao Tong, Xiaoqing Zheng, Weijia Fang, Peng Zhao, Gang Pan, Schahram Dustdar, and Albert Y. Zomaya.</a></span>
+            </span>
+            <!-- 学术发表1：标题 -->
+            <span class="article-title">
+              <i class="publication-content">
+                "Edge Intelligence with Spiking Neural Networks".
+              </i>
+            </span>
+            <!-- 学术发表1：出处 -->
+            <span class="publication-content">
+              <b>Under Review</b>
+            </span>
+            <p>
+              <!-- 学术发表1：PDF链接 -->
+              <a class="btn btn-outline-primary my-1 mr-1 btn-sm" href="https://arxiv.org/pdf/2507.14069" target="_blank" rel="noopener">
+                PDF
+              </a>
+              <!-- 学术发表1：代码链接 -->
+              <a class="btn btn-outline-primary my-1 mr-1 btn-sm" href="https://github.com/zju-bis/edgesnn-survey" target="_blank" rel="noopener">
+                Code
+              </a>
+            </p>
+          </div>
+        </div>
+
+        <!-- 学术发表2 -->
+        <div class="grid-sizer col-lg-12 isotope-item pubtype-all pubtype-1 year-all year-2025">
+          <div class="pub-list-item" style="margin-bottom: 1rem">
+            <i class="far fa-file-alt pub-icon" aria-hidden="true"></i>
+            <!-- 学术发表2：作者列表 -->
+            <span class="article-metadata li-cite-author">
+              <span class="publication-content"><a>Di Yu, Changze Lv, Xin Du, Linshan Jiang, Wentao Tong, Zhenyu Liao, Xiaoqing Zheng and Shuiguang Deng.</a></span>
+            </span>
+            <!-- 学术发表2：标题 -->
+            <span class="article-title">
+              <i class="publication-content">
+                "ECC-SNN: Cost-Effective Edge-Cloud Collaboration for Spiking Neural Networks".
+              </i>
+            </span>
+            <!-- 学术发表2：出处 -->
+            <span class="publication-content">
+              In <b>Proceedings of International Joint Conference on Artificial Intelligence (IJCAI)</b>, 2025
+            </span>
+            <p>
+              <!-- 学术发表2：PDF链接 -->
+              <a class="btn btn-outline-primary my-1 mr-1 btn-sm" href="https://arxiv.org/pdf/2505.20835" target="_blank" rel="noopener">
+                PDF
+              </a>
+              <!-- 学术发表2：代码链接 -->
+              <a class="btn btn-outline-primary my-1 mr-1 btn-sm" href="https://github.com/AmazingDD/ECC-SNN" target="_blank" rel="noopener">
+                Code
+              </a>
+            </p>
+          </div>
+        </div>
+
+        <!-- 学术发表3 -->
+        <div class="grid-sizer col-lg-12 isotope-item pubtype-all pubtype-1 year-all year-2025">
+          <div class="pub-list-item" style="margin-bottom: 1rem">
+            <i class="far fa-file-alt pub-icon" aria-hidden="true"></i>
+            <!-- 学术发表3：作者列表 -->
+            <span class="article-metadata li-cite-author">
+              <span class="publication-content"><a>Di Yu, Xin Du, Linshan Jiang, Huijing Zhang, and Shuiguang Deng.</a></span>
+            </span>
+            <!-- 学术发表3：标题 -->
+            <span class="article-title">
+              <i class="publication-content">
+                "Exploiting Label Skewness for Spiking Neural Networks in Federated Learning".
+              </i>
+            </span>
+            <!-- 学术发表3：出处 -->
+            <span class="publication-content">
+              In <b>Proceedings of International Joint Conference on Artificial Intelligence (IJCAI)</b>, 2025
+            </span>
+            <p>
+              <!-- 学术发表3：PDF链接 -->
+              <a class="btn btn-outline-primary my-1 mr-1 btn-sm" href="https://arxiv.org/pdf/2412.17305" target="_blank" rel="noopener">
+                PDF
+              </a>
+              <!-- 学术发表3：代码链接 -->
+              <a class="btn btn-outline-primary my-1 mr-1 btn-sm" href="https://github.com/AmazingDD/FedLEC" target="_blank" rel="noopener">
+                Code
+              </a>
+            </p>
+          </div>
+        </div>
+
+        <!-- 学术发表4 -->
+        <div class="grid-sizer col-lg-12 isotope-item pubtype-all pubtype-1 year-all year-2025">
+          <div class="pub-list-item" style="margin-bottom: 1rem">
+            <i class="far fa-file-alt pub-icon" aria-hidden="true"></i>
+            <!-- 学术发表4：作者列表 -->
+            <span class="article-metadata li-cite-author">
+              <span class="publication-content"><a>Di Yu, Changze Lv, Xin Du, Linshan Jiang, Qing Yin, Wentao Tong, Xiaoqing Zheng and Shuiguang Deng.</a></span>
+            </span>
+            <!-- 学术发表4：标题 -->
+            <span class="article-title">
+              <i class="publication-content">
+                "Cost-Effective On-Device Sequential Recommendation with Spiking Neural Networks".
+              </i>
+            </span>
+            <!-- 学术发表4：出处 -->
+            <span class="publication-content">
+              In <b>Proceedings of International Joint Conference on Artificial Intelligence (IJCAI)</b>, 2025
+            </span>
+            <p>
+              <!-- 学术发表4：PDF链接 -->
+              <a class="btn btn-outline-primary my-1 mr-1 btn-sm" href="./index.html" target="_blank" rel="noopener">
+                PDF
+              </a>
+              <!-- 学术发表4：代码链接 -->
+              <a class="btn btn-outline-primary my-1 mr-1 btn-sm" href="https://github.com/AmazingDD/serenRec" target="_blank" rel="noopener">
+                Code
+              </a>
+            </p>
+          </div>
+        </div>
+
+        <!-- 学术发表5 -->
+        <div class="grid-sizer col-lg-12 isotope-item pubtype-all pubtype-1 year-all year-2025">
+          <div class="pub-list-item" style="margin-bottom: 1rem">
+            <i class="far fa-file-alt pub-icon" aria-hidden="true"></i>
+            <!-- 学术发表5：作者列表 -->
+            <span class="article-metadata li-cite-author">
+              <span class="publication-content"><a>Changze Lv, Jingwen Xu, Yiyang Lu, Xiaohua Wang, Zhenghua Wang, Zhibo Xu, Di Yu, Xin Du, Xiaoqing Zheng, Xuanjing Huang.</a></span>
+            </span>
+            <!-- 学术发表5：标题 -->
+            <span class="article-title">
+              <i class="publication-content">
+                "Dendritic Localized Learning: Toward Biologically Plausible Algorithm".
+              </i>
+            </span>
+            <!-- 学术发表5：出处 -->
+            <span class="publication-content">
+              In <b>International Conference on Machine Learning (ICML)</b>, 2025
+            </span>
+            <p>
+              <!-- 学术发表5：PDF链接 -->
+              <a class="btn btn-outline-primary my-1 mr-1 btn-sm" href="https://arxiv.org/pdf/2501.09976" target="_blank" rel="noopener">
+                PDF
+              </a>
+              <!-- 学术发表5：代码链接 -->
+              <a class="btn btn-outline-primary my-1 mr-1 btn-sm" href="https://github.com/Lvchangze/Dendritic-Localized-Learning" target="_blank" rel="noopener">
+                Code
+              </a>
+            </p>
+          </div>
+        </div>
+
+        <!-- 学术发表6 -->
+        <div class="grid-sizer col-lg-12 isotope-item pubtype-all pubtype-2 year-all year-2025">
+          <div class="pub-list-item" style="margin-bottom: 1rem">
+            <i class="far fa-file-alt pub-icon" aria-hidden="true"></i>
+            <!-- 学术发表6：作者列表 -->
+            <span class="article-metadata li-cite-author">
+              <span class="publication-content"><a>Xin Du, WenTao Tong, Linshan Jiang, Di Yu, Zhiliang Wu, Qiang Duan and Shuiguang Deng.</a></span>
+            </span>
+            <!-- 学术发表6：标题 -->
+            <span class="article-title">
+              <i class="publication-content">
+                "SNN-IoT: Efficient Partitioning and Enabling of Deep Spiking Neural Networks in IoT Services".
+              </i>
+            </span>
+            <!-- 学术发表6：出处 -->
+            <span class="publication-content">
+              In <b>IEEE Transactions on Service Computing (TSC)</b>, 2025
+            </span>
+            <p>
+              <!-- 学术发表6：PDF链接 -->
+              <a class="btn btn-outline-primary my-1 mr-1 btn-sm" href="./index.html" target="_blank" rel="noopener">
+                PDF
+              </a>
+            </p>
+          </div>
+        </div>
+
+        <!-- 学术发表7 -->
+        <div class="grid-sizer col-lg-12 isotope-item pubtype-all pubtype-1 year-all year-2024">
+          <div class="pub-list-item" style="margin-bottom: 1rem">
+            <i class="far fa-file-alt pub-icon" aria-hidden="true"></i>
+            <!-- 学术发表7：作者列表 -->
+            <span class="article-metadata li-cite-author">
+              <span class="publication-content"><a>Di Yu, Xin Du, Linshan Jiang, Wentao Tong, and Shuiguang Deng.</a></span>
+            </span>
+            <!-- 学术发表7：标题 -->
+            <span class="article-title">
+              <i class="publication-content">
+                "EC-SNN: Splitting Deep Spiking Neural Networks for Edge Devices".
+              </i>
+            </span>
+            <!-- 学术发表7：出处 -->
+            <span class="publication-content">
+              In <b>Proceedings of International Joint Conference on Artificial Intelligence (IJCAI)</b>, 2024
+            </span>
+            <p>
+              <!-- 学术发表7：PDF链接 -->
+              <a class="btn btn-outline-primary my-1 mr-1 btn-sm" href="https://www.ijcai.org/proceedings/2024/0596.pdf" target="_blank" rel="noopener">
+                PDF
+              </a>
+              <!-- 学术发表7：代码链接 -->
+              <a class="btn btn-outline-primary my-1 mr-1 btn-sm" href="https://github.com/AmazingDD/EC-SNN" target="_blank" rel="noopener">
+                Code
+              </a>
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+    
+  <!-- 网页Footer -->
+  <div class="container">
+    <br>
+    <br>
+    <footer class="site-footer d-flex justify-content-center align-items-center">
+      <p class="powered-by m-0 flex-grow-1 text-center">
+        <!-- 作者 -->
+        Powered by the <a href="https://www.linkedin.com/in/yanmu-ding/" style="text-decoration: none;">Yanmu Ding</a>
+      </p>
+      <button class="mx-3" aria-hidden="true" id="bottom-to-top-id">
+        <i class="fa-solid fa-arrow-up"></i>
+      </button>
+    </footer>
+    <br>
+    <br>
+  </div>
+
+  <!-- 以下是另外需要的JS文件 -->
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
+  <script src="../js/index.js"></script>
+  <script src="./js/index.js"></script>
+
+</body>
+</html>
